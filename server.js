@@ -16,7 +16,7 @@ const db = require("./models");
 const Role = db.role;
 
 db.mongoose
-  .connect(`mongodb+srv://admin:admin@cluster0.l00n2.mongodb.net/my_own_db?retryWrites=true&w=majority`, {
+  .connect(`YOUR_MONGO_URI`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
