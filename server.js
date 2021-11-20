@@ -12,11 +12,11 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.role;
 
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect(`mongodb+srv://admin:admin@cluster0.l00n2.mongodb.net/my_own_db?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -65,9 +65,8 @@ function initial() {
   });
 }
 
-app.get('/', (req, res) => {
-  res.json({ message: "Welcome to our application." });
-});
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
